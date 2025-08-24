@@ -5,12 +5,19 @@ It ensures consistent handling of logging, validation, exception management, per
 📌 What Each Behavior Does
 
 UnhandledExceptionBehavior → Catches unexpected exceptions and ensures consistent error responses.
+
 LoggingPipelineBehavior → Logs request and response details for observability.
+
 ValidationBehavior → Validates incoming requests using FluentValidation before reaching handlers.
+
 PerformanceBehavior → Tracks execution time of each request for performance monitoring.
+
 IdempotentCachingBehavior → Ensures duplicate requests (same Idempotency-Key) are not processed multiple times.
+
 AuditLogBehavior → Records audit trail for sensitive operations.
+
 TransactionBehavior → Wraps request handling in a database transaction to ensure atomicity.
+
 
 
 
