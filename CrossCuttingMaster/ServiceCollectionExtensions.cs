@@ -1,7 +1,9 @@
 ﻿using CrossCuttingMaster.MediatRPipeline.Behaviors;
 using CrossCuttingMaster.MediatRPipeline.Handlers.Commands;
-using CrossCuttingMaster.Responses;
+using CrossCuttingMaster.MediatRPipeline.Handlers.Responses;
+using CrossCuttingMaster.MediatRPipeline.Handlers.Settings;
 using CrossCuttingMaster.Services.AuditService;
+using CrossCuttingMaster.Settings;
 using FluentValidation;
 using MediatR;
 
@@ -9,6 +11,13 @@ namespace CrossCuttingMaster
 {
     public static class ServiceCollectionExtensions
     {
+        public static IServiceCollection AddConfigurations(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.Configure<PerformanceBehaviorSettings>(configuration.GetSection("PerformanceBehavior"));
+            services.Configure<CreateOrderOptions>(configuration.GetSection("CreateOrder"));
+            return services;
+        }
+
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddSingleton<IAuditLogger, AuditLogger>();

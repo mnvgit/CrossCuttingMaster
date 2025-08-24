@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using CrossCuttingMaster.MediatRPipeline.Handlers.Settings;
+using MediatR;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace CrossCuttingMaster.MediatRPipeline.Behaviors

@@ -1,5 +1,5 @@
-﻿using CrossCuttingMaster.MediatRPipeline.Handlers.Commands;
-using CrossCuttingMaster.Responses;
+﻿using CrossCuttingMaster.MediatRPipeline.Handlers.DomainExeptions;
+using CrossCuttingMaster.MediatRPipeline.Handlers.Responses;
 using FluentValidation;
 using MediatR;
 
@@ -54,7 +54,7 @@ namespace CrossCuttingMaster.MediatRPipeline.Behaviors
                     default:
                         _logger.LogError(ex, "An unhandled exception occurred for request {RequestName}", typeof(TRequest).Name);
                         httpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
-                        res = ApiResponse<TResponse>.Fail(StatusCodes.Status500InternalServerError, ["An unexpected error occurred."]);
+                        res = ApiResponse<TResponse>.Fail(StatusCodes.Status500InternalServerError, [ex.Message]);
                         break;
                 }
 

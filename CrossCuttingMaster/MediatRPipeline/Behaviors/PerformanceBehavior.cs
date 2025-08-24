@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using CrossCuttingMaster.Settings;
+using MediatR;
 using Microsoft.Extensions.Options;
 using System.Diagnostics;
 
@@ -6,7 +7,9 @@ namespace CrossCuttingMaster.MediatRPipeline.Behaviors
 {
     // This behavior measures the execution time of each request in the MediatR pipeline.
     // If the execution time exceeds defined milliseconds, it logs a warning.
-    public class PerformanceBehavior<TRequest, TResponse>(ILogger<PerformanceBehavior<TRequest, TResponse>> logger, IOptions<PerformanceBehaviorOptions> options) : IPipelineBehavior<TRequest, TResponse>
+    public class PerformanceBehavior<TRequest, TResponse>(
+        ILogger<PerformanceBehavior<TRequest, TResponse>> logger,
+        IOptions<PerformanceBehaviorSettings> options) : IPipelineBehavior<TRequest, TResponse>
         where TRequest : notnull
     {
         private readonly ILogger<PerformanceBehavior<TRequest, TResponse>> _logger = logger;
@@ -34,10 +37,5 @@ namespace CrossCuttingMaster.MediatRPipeline.Behaviors
 
             return response;
         }
-    }
-
-    public class PerformanceBehaviorOptions
-    {
-        public int ThresholdMilliseconds { get; set; } = 500;
     }
 }

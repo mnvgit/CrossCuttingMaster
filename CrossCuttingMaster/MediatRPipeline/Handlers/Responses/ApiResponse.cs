@@ -1,4 +1,4 @@
-﻿namespace CrossCuttingMaster.Responses
+﻿namespace CrossCuttingMaster.MediatRPipeline.Handlers.Responses
 {
     public class ApiResponse<T>
     {

@@ -1,6 +1,8 @@
-﻿using CrossCuttingMaster.MediatRPipeline.Behaviors;
-using CrossCuttingMaster.Responses;
+﻿using CrossCuttingMaster.MediatRPipeline.Handlers.DomainExeptions;
+using CrossCuttingMaster.MediatRPipeline.Handlers.Responses;
+using CrossCuttingMaster.MediatRPipeline.Handlers.Settings;
 using MediatR;
+using Microsoft.Extensions.Options;
 
 namespace CrossCuttingMaster.MediatRPipeline.Handlers.Commands
 {
@@ -14,11 +16,18 @@ namespace CrossCuttingMaster.MediatRPipeline.Handlers.Commands
 
     public class CreateOrderHandler : IRequestHandler<CreateOrderCommand, ApiResponse<Guid>>
     {
+        private readonly CreateOrderOptions _options;
+
+        public CreateOrderHandler(IOptions<CreateOrderOptions> options)
+        {
+            _options = options.Value;
+        }
+
         public async Task<ApiResponse<Guid>> Handle(CreateOrderCommand request, CancellationToken ct)
         {
             try
             {
-                if(request.UserId == 100)
+                if (request.UserId == _options.SpecialUserId)
                 {
                     throw new CustomDomainCreateOrderException("CustomDomainCreateOrderException example", CreateOrderErrorCode.PaymentFailed);
                 }

@@ -1,4 +1,4 @@
-﻿namespace CrossCuttingMaster.MediatRPipeline.Handlers.Commands
+﻿namespace CrossCuttingMaster.MediatRPipeline.Handlers.DomainExeptions
 {
     public enum CreateOrderErrorCode
     {

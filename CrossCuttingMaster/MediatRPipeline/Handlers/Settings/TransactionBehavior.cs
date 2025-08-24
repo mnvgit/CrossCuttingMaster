@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using System.Transactions;
 
-namespace CrossCuttingMaster.MediatRPipeline.Behaviors
+namespace CrossCuttingMaster.MediatRPipeline.Handlers.Settings
 {
     // Why use it?
     // Without it, every single request going through MediatR would be wrapped in a TransactionScope.

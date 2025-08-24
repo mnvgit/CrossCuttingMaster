@@ -1,5 +1,5 @@
 using CrossCuttingMaster.MediatRPipeline.Handlers.Commands;
-using CrossCuttingMaster.Responses;
+using CrossCuttingMaster.MediatRPipeline.Handlers.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
