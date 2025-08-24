@@ -1,0 +1,130 @@
+{
+	"info": {
+		"_postman_id": "9a24451c-aabe-42be-8174-548ea5e9aa3d",
+		"name": "CrossCuttingMaster",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47858783",
+		"_collection_link": "https://michaeln-5553999.postman.co/workspace/Michael-N's-Workspace~fcc18593-7847-4df9-8500-9cfe76f3c240/collection/47858783-9a24451c-aabe-42be-8174-548ea5e9aa3d?action=share&source=collection_link&creator=47858783"
+	},
+	"item": [
+		{
+			"name": "Create Order Happy Path 200",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Idempotency-Key",
+						"value": "aaa",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"price\": 20,\r\n  \"userId\": 5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:32770/Order",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "32770",
+					"path": [
+						"Order"
+					]
+				},
+				"description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://localhost:32770/Order' \\\r\n  -H 'accept: text/plain' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"price\": 20,\r\n  \"userId\": 5\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Order Validation Error 400",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"price\": 20\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:32770/Order",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "32770",
+					"path": [
+						"Order"
+					]
+				},
+				"description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://localhost:32770/Order' \\\r\n  -H 'accept: text/plain' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"price\": 20,\r\n  \"userId\": 5\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Order Server Error 500",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"price\": 200,\r\n  \"userId\": 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:32770/Order",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "32770",
+					"path": [
+						"Order"
+					]
+				},
+				"description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://localhost:32770/Order' \\\r\n  -H 'accept: text/plain' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"price\": 20,\r\n  \"userId\": 5\r\n}'"
+			},
+			"response": []
+		}
+	]
+}
