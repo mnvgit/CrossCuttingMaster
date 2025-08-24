@@ -1,16 +1,16 @@
-CrossCuttingMaster is a modern .NET 8 web application template that demonstrates robust cross-cutting concern handling using MediatR, FluentValidation, and custom middleware. 
-The project is designed to help you build scalable, maintainable, and testable APIs by centralizing common concerns such as validation, exception handling, performance monitoring, and audit logging.
-
-•	.NET 8 Web API: Built on the latest .NET platform for maximum performance and long-term support.
-•	MediatR Integration: Implements the mediator pattern for clean separation of business logic and infrastructure, supporting request/response, notifications, and pipeline behaviors.
-•	FluentValidation: Provides a fluent interface for model validation, integrated seamlessly into the MediatR pipeline.
-•	Custom Pipeline Behaviors:
-•	Performance Monitoring: Logs warnings for slow requests, with configurable thresholds.
-•	Audit Logging: Automatically logs all requests and responses, including errors, for traceability and compliance.
-•	Global Exception Handling: Centralized error handling with customizable responses and support for ProblemDetails.
-•	Extensible Architecture: Easily add or modify cross-cutting behaviors to suit your project’s needs.
+CrossCuttingMaster is a .NET project that demonstrates how to implement cross-cutting concerns using MediatR pipeline behaviors.
+It ensures consistent handling of logging, validation, exception management, performance tracking, idempotency, audit logging, and transaction management across all requests.
 
 
+📌 What Each Behavior Does
+
+UnhandledExceptionBehavior → Catches unexpected exceptions and ensures consistent error responses.
+LoggingPipelineBehavior → Logs request and response details for observability.
+ValidationBehavior → Validates incoming requests using FluentValidation before reaching handlers.
+PerformanceBehavior → Tracks execution time of each request for performance monitoring.
+IdempotentCachingBehavior → Ensures duplicate requests (same Idempotency-Key) are not processed multiple times.
+AuditLogBehavior → Records audit trail for sensitive operations.
+TransactionBehavior → Wraps request handling in a database transaction to ensure atomicity.
 
 
 
