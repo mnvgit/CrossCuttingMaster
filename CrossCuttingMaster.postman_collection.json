@@ -89,7 +89,7 @@
 			"response": []
 		},
 		{
-			"name": "Create Order Server Error 500",
+			"name": "Create Order Missing Idempotency-Key - 400",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -123,6 +123,45 @@
 					]
 				},
 				"description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://localhost:32770/Order' \\\r\n  -H 'accept: text/plain' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"price\": 20,\r\n  \"userId\": 5\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Order Server Error User100 - 500",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Idempotency-Key",
+						"value": "wretyte",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"price\": 200,\r\n  \"userId\": 100\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:32770/Order",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "32770",
+					"path": [
+						"Order"
+					]
+				},
+				"description": "Generated from cURL: curl --location 'https://localhost:32770/Order' \\\r\n--header 'Content-Type: application/json' \\\r\n--data '{\r\n  \"price\": 200,\r\n  \"userId\": 100\r\n}'"
 			},
 			"response": []
 		}
