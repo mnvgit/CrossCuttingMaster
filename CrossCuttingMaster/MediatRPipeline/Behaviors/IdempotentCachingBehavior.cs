@@ -1,4 +1,5 @@
-﻿using CrossCuttingMaster.MediatRPipeline.Handlers.Settings;
+﻿using CrossCuttingMaster.MediatRPipeline.Behaviors.CustomExceptions;
+using CrossCuttingMaster.MediatRPipeline.Handlers.Settings;
 using MediatR;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -29,7 +30,7 @@ namespace CrossCuttingMaster.MediatRPipeline.Behaviors
             if (!httpContext.Request.Headers.TryGetValue("Idempotency-Key", out var idempotencyKeyFromHeader)
                 || string.IsNullOrWhiteSpace(idempotencyKeyFromHeader))
             {
-                throw new InvalidOperationException("Missing Idempotency-Key header");
+                throw new MissingIdempotencyKey("Missing Idempotency-Key");
             }
 
             if (_cache.TryGetValue(idempotencyKeyFromHeader, out var cachedResponse))

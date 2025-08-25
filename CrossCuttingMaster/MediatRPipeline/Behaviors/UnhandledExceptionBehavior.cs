@@ -1,4 +1,5 @@
-﻿using CrossCuttingMaster.MediatRPipeline.Handlers.DomainExeptions;
+﻿using CrossCuttingMaster.MediatRPipeline.Behaviors.CustomExceptions;
+using CrossCuttingMaster.MediatRPipeline.Handlers.DomainExeptions;
 using CrossCuttingMaster.MediatRPipeline.Handlers.Responses;
 using FluentValidation;
 using MediatR;
@@ -43,6 +44,12 @@ namespace CrossCuttingMaster.MediatRPipeline.Behaviors
                             validationErrors.Add(error.ErrorMessage);
                         }
                         res = ApiResponse<TResponse>.Fail(StatusCodes.Status400BadRequest, validationErrors);
+                        break;
+
+                    case MissingIdempotencyKey missingIdempotencyKey:
+                        _logger.LogError(missingIdempotencyKey, "Missing Idempotency-Key for request {RequestName}", typeof(TRequest).Name);
+                        httpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+                        res = ApiResponse<TResponse>.Fail(StatusCodes.Status400BadRequest, [missingIdempotencyKey.Message]);
                         break;
 
                     case CustomDomainCreateOrderException createOrderEx:
